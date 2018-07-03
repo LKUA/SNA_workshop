@@ -22,7 +22,7 @@ vcount(g)
 
 igraph::transitivity(g) #0.3286171 - observed value
 
-Nrep <- 50 # 50 removals or 1,2,3,4.....99,100 nodes
+Nrep <- 500 # 50 removals or 1,2,3,4.....99,100 nodes
 #Nrep <- 5000 # 5000 removals or 1,2,3,4.....99,100 nodes
 resmat <- matrix(NA, Nrep, 100) #Nrep rows, 100 cols to store results in
 
@@ -31,7 +31,7 @@ resmat <- matrix(NA, Nrep, 100) #Nrep rows, 100 cols to store results in
 # this will take some time !!!
 
 for(i in 1:100){
-resmat[,i] <- replicate(Nrep,igraph::transitivity(delete_vertices(g, sample(1:vcount(g),i,F))))
+resmat[,i] <- replicate(Nrep,igraph::transitivity(delete_vertices(g, sample(1:vcount(g),i,F)))) #ie delete from graph g, sample without replacement
 }
 
 resmat
@@ -68,5 +68,5 @@ rbind(
   ylim(0,1)
 
 
-
+#the transitivity score stays pretty much the same, suggesting taht its not spurious nodes which are driving the score
 

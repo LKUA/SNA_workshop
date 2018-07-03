@@ -248,7 +248,7 @@ plot(fit)
 # degree appears related to all.
 
 
-
+#shows how related the different metrics are to eachother - ie betweenness is far from the others, closeness and eigenvector centrality are close in dimension 2, and deg is somewher ein the middle
 
 
 
@@ -264,6 +264,7 @@ plot(fit)
 
 
 # Uses of centrality measures:
-# Use as IV in eg linear models.
-# Use as a DV for eg hypotheses about attributes that make indivs influential
+# Use as IV in eg linear models. eg fitness / fecundity / health measure as a response to betweenneess  - binomial response of seroprevalcence could be nice and quick. Make mixed effect with subject id as a random variable as can appear in different networks
+# 
+# Use as a DV for eg hypotheses about attributes that make indivs influential. Eg mass, sex, status etc as explanatory variables for it as a response variable.
 

@@ -117,12 +117,13 @@ plot(gw)
 
 # binary matrix
 friends_mat <- read.csv("data/friends_mat.csv")
-friends_mat
+friends_mat #igraph does not want a column at the beginning with the names, it will know that the names / nodes should be in the same order.
+# Need to convert to matrix
 
 gM <- graph_from_adjacency_matrix(as.matrix(friends_mat), mode=c("undirected"))
 gM
 
-# valued matrix
+# valued matrix - has the numericla information ie the number of hours each individaul spent to gether - for the mice include the time length at which they were within a certain distance from eachtoher.
 friends_w_mat <- read.csv("data/friends_w_mat.csv")
 friends_w_mat
 
@@ -135,7 +136,7 @@ gWM
 
 ## Graph objects can also be converted to matrices, edgelists or dataframes
 
-gw[]
+gw[] #returns adjacency matrix
 get.adjacency(gw)
 get.adjacency(gw,sparse = F)
 
@@ -146,7 +147,7 @@ as_edgelist(gw, names=T)
 as_data_frame(gw, what="edges")
 as_data_frame(gw, what="vertices")
 
-V(g)[[]] # gives attribute info too. 
+V(g)[[]] # gives attribute info too as dataframe
 
 
 
@@ -169,7 +170,7 @@ vcount(g)
 
 
 ## import some attributes
-friends_attr <- read.csv("data/friends_attr.csv")
+friends_attr <- read.csv("data/friends_attr.csv", stringsAsFactors = F) #attr order of names matters
 
 # Create new vertex attribute called 'gender'
 g <- set_vertex_attr(g, "gender", value = friends_attr$gender)
@@ -198,7 +199,8 @@ graph_attr(gw)
 gg <- graph_from_data_frame(friends_w, directed = F, vertices = friends_attr)
 gg
 
-
+#m and f came in as factor so converted tto levels - can import as chr and then you keep the letters
+#
 
 
 
@@ -213,11 +215,11 @@ V(g)[[1:5]]
 E(g)[[inc('Britt')]]  
 
 # Find all pairs that spend 4 or more hours together per week
-E(g)[[hours>=4]]  
+E(g)[[hours>=4]]  #Find the mice that associate for a longer period
 
 # also directly create new attributes
 # Plot network and color vertices by gender
-V(g)$color <- ifelse(V(g)$gender == 1, "orange", "dodgerblue")
+V(g)$color <- ifelse(V(g)$gender == "F", "orange", "dodgerblue")
 plot(g, vertex.label.color = "black")
 
 
@@ -278,20 +280,20 @@ graph_from_literal(a-b-c-d-e-f, a-g-h-b, h-e:f:i, j)
 
 make_empty_graph(20)
 make_full_graph(20)
-make_star(20)
+plot(make_star(20)) #ie if asking how like a star is my graph
 make_tree(20, children = 3, mode = "undirected")
 make_ring(20)
 
 
-sample_gnm(n=50, m=30) #erdos-renyi
-sample_gnp(n=50, p=.1)
-sample_smallworld(dim=2, size=10, nei=1, p=0.1)
-sample_pa(n=100, power=1, m=1,  directed=F) #Barabasi-Albert preferential attachment model
+plot(sample_gnm(n=50, m=30)) #erdos-renyi
+plot(sample_gnp(n=50, p=.1))
+plot(sample_smallworld(dim=2, size=10, nei=1, p=0.1))
+plot(sample_pa(n=100, power=1, m=1,  directed=F)) #Barabasi-Albert preferential attachment model
 
 
 
 ## built in datasets....
-zach <- graph("Zachary") # the Zachary carate club
+zach <- graph("Zachary") # the Zachary Karate club
 plot(zach, vertex.size=10, vertex.label=NA)
 
 
@@ -320,7 +322,7 @@ class(zach.net)
 intergraph::asIgraph(zach.net)
 
 # intergraph can also be used to create dataframes of edges and vertexes
-intergraph::asDF(zach.net)
+intergraph::asDF(zach.net) #returns as dataframe
 
 detach(package:sna)
 

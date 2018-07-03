@@ -50,7 +50,7 @@ plot(g,
 
 
 # frame color by group
-V(g)$frame.color <- ifelse(V(g1)$gender == "F", "red", "navy")
+V(g)$frame.color <- ifelse(V(g)$gender == "F", "red", "navy")
 plot(g, 
      vertex.label.color = "black") 
 
@@ -98,7 +98,7 @@ plot(g,
 
 
 
-# You would think changing the thickness of the border/frame of a vector would be easy....
+# You would think changing the thickness of the border/frame of a vertex would be easy....
 
 # .... it's not
 
@@ -208,7 +208,7 @@ plot(g,
      edge.lty = 3)   # try 0:5
 
 
-# set edge types for particular edges...
+# set edge types for particular edges... quick code for chekcign the gender
 edgetypes <- as.data.frame(get.edgelist(g))
 edgetypes$from <- V(g)$gender[match(edgetypes[,1],V(g)$name)]
 edgetypes$to <- V(g)$gender[match(edgetypes[,2],V(g)$name)]
@@ -286,7 +286,7 @@ plot(g,
      vertex.label = NA,
      edge.color = 'black',
      vertex.size = sqrt(g.b)+1,
-     edge.arrow.size = 0.25,
+     edge.arrow.size = 0.05,
      edge.curved=T)
 
 

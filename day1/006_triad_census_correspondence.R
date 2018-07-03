@@ -54,7 +54,7 @@ plot(fit, mass = TRUE, contrib = "absolute", map =
 # appears to be triad types related to reciprocity that are closer to mat ABCD
 # mat D also has higher levels of out- and in- stars 02X and 021C - directed line. a->b->c
 
-
+#Loosk like a difference between closed and open triangles.
 
 recips <- unlist(lapply(g_l,  reciprocity))
 recips

@@ -78,8 +78,8 @@ mean(degree(g))
 g.female <- induced_subgraph(g, V(g)$gender==1)  #female-female
 g.male <- induced_subgraph(g, V(g)$gender==2)  #male-male
 
-g.female
-g.male
+g.female #only female edges
+g.male #only male edges. Can calculate densityies of only female and only males 
 
 graph.density(g.female)  #.36
 graph.density(g.male) #.28
@@ -105,7 +105,7 @@ par(mfrow=c(1,1))
 ## components are individually connected parts of graphs
 components(gs1) # number and size of components
 
-# get components
+# get components - useful if you have a dense network and want to know the density within each network
 decompose(gs1)
 
 
@@ -121,7 +121,7 @@ decompose(gs1)
 gs3 <- sample_gnp(200,.015, directed = F)
 plot(gs3, vertex.size=2, vertex.label=NA)
 
-cno <- components(gs3)$no #11
+cno <- components(gs3)$no #11  CALCULATE THIS FOR THE MICE AND SEE OVER TIME
 (cno - 1) / (vcount(g) - 1) # [1] Component Ratio = 0.5882353
 
 
@@ -150,7 +150,7 @@ V(g)$name
 keyplayer::fragment(mat) # notice John has lowest fragmentation, # removing Michael leads to more fragmentation
 
 
-
+#e which individuals go and disrupt the network
 
 
 
@@ -184,7 +184,8 @@ plot(gm,
      layout = layout_nicely(gm))
 
 
-# diameter - standard measure of 'distance' in graph
+# diameter - standard measure of 'distance' in graph - longest shortest path
+# 
 diameter(gm, directed=T)
 diameter(gm, directed=F) # if don't wish to consider edge direction
 
@@ -228,7 +229,8 @@ farthest_vertices(gm)
 get_diameter(gm)  
 
 # Identify vertices that are reachable within two connections from vertex 42
-ego(gm, 2, '42', mode = c('out'))
+v<-ego(gm, 2, '42', mode = c('out'))[[1]]
+plot(subgraph(gm,v), edge.arrow.size =0.1)
 
 # Identify vertices that can reach vertex 42 within two connections
 ego(gm, 2, '42', mode = c('in'))
@@ -276,10 +278,10 @@ diameter(g, directed = FALSE)
 # Directed connectedness - what proportion of pairs of nodes can reach each other?:
 
 sna::reachability(net)
-plot(g,vertex.arrow.size=.05)
+plot(g,edge.arrow.size=.05)
 V(g)$name
 
-x<-sna::reachability(net)
+x<-sna::reachability(net)#the sna version of the g network
 nrow(x)
 (sum(x)-nrow(x))/(nrow(x)*(nrow(x)-1)) #.67
 
@@ -410,7 +412,7 @@ plot(g) #campnet graph again
 ## reciprocity
 reciprocity(g) #[1] 0.7037037  70% ofties are reciprocated.
 
-compete::rshps(mat) #'rshps' function from 'compete' package also gives information about dyad types
+compete::rshps(mat) #'rshps' function from 'compete' package also gives information about dyad types. One ways are unidirectional, ties are reciprocol, unknowns means no edges between them
 
 dyad_census(g) 
 
