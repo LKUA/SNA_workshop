@@ -32,7 +32,7 @@ plot(g)
 
 
 # Plot network and color vertices by gender
-V(g)$color <- ifelse(V(g)$gender == "F", "orange", "dodgerblue")
+V(g)$color <- ifelse(V(g)$gender == "F", "orange", "#aabedd")
 plot(g, 
      vertex.label.color = "black") # also change vertex label color
 
@@ -249,7 +249,7 @@ plot(g,
      vertex.label.color = "black", 
      edge.color = 'gray22',
      vertex.size = 0,
-     edge.arrow.size = 0.3,
+     edge.arrow.size = 0.1,
      vertex.label.cex=.8)
 
 
@@ -263,14 +263,14 @@ plot(g,
      vertex.label = NA,
      edge.color = 'black',
      vertex.size = sqrt(g.b)+1,
-     edge.arrow.size = 0.25)
+     edge.arrow.size = 0.1)
 
 # change curvature of arrows
 plot(g, 
      vertex.label = NA,
      edge.color = 'black',
      vertex.size = sqrt(g.b)+1,
-     edge.arrow.size = 0.25,
+     edge.arrow.size = 0.05,
      edge.curved=.2)
 
 
@@ -279,7 +279,7 @@ plot(g,
      vertex.label = NA,
      edge.color = 'black',
      vertex.size = sqrt(g.b)+1,
-     edge.arrow.size = 0.25,
+     edge.arrow.size = 0.05,
      edge.curved=F)
 
 plot(g, 
@@ -296,7 +296,7 @@ plot(g,
      vertex.label = NA,
      edge.color = 'black',
      vertex.size = sqrt(g.b)+1,
-     edge.arrow.size = 0.25,
+     edge.arrow.size = 0.05,
      edge.arrow.width = 1.25,
      edge.curved=T)
 
@@ -344,12 +344,12 @@ gf3 <- sample_forestfire(40,.1)
 layoutg <- layout_nicely(gf1)
 
 par(mfrow=c(2,3))
-plot(gf1, layout = layoutg, edge.arrow.size=.2, edge.color='gray21')
-plot(gf2, layout = layoutg, edge.arrow.size=.2, edge.color='tomato')
-plot(gf3, layout = layoutg, edge.arrow.size=.2, edge.color='dodgerblue')
-plot(gf1, edge.arrow.size=.2, edge.color='gray21')
-plot(gf2, edge.arrow.size=.2, edge.color='tomato')
-plot(gf3, edge.arrow.size=.2, edge.color='dodgerblue')
+plot(gf1, layout = layoutg, edge.arrow.size=.02, edge.color='gray21')
+plot(gf2, layout = layoutg, edge.arrow.size=.02, edge.color='tomato')
+plot(gf3, layout = layoutg, edge.arrow.size=.02, edge.color='dodgerblue')
+plot(gf1, edge.arrow.size=.02, edge.color='gray21')
+plot(gf2, edge.arrow.size=.02, edge.color='tomato')
+plot(gf3, edge.arrow.size=.02, edge.color='dodgerblue')
 par(mfrow=c(1,1))
 
 

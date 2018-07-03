@@ -41,7 +41,7 @@ resmat[,100] # when 100 nodes removed, results of transitivity
 #plot
 library(ggplot2)
 library(tidyverse)
-
+library(dplyr)
 rbind(
   data.frame(Var2=0, mean=igraph::transitivity(g), sd=NA,se=NA),
 reshape2::melt(resmat) %>%
